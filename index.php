@@ -4,9 +4,9 @@ include("/Users/Donovan/Sites/sn/classes/Login.php");
 
 
 
-if(Login::isLoggedIn()){
+if( Login::isLoggedIn() ){
 	echo 'Logged In';
-	//echo Login::isLoggedIn();
+	echo Login::isLoggedIn();
 } 
 else { echo 'Not logged in';}
 
