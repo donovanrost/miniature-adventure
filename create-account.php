@@ -19,8 +19,16 @@ if(isset($_POST['createaccount'])){
                 if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
                     if (strlen($password) >= 6 && strlen($password) <= 60) {
         	            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+                            if(!DB::query('SELECT email FROM users WHERE email=:email', array(':email' => $email))){
+
+                            
+
                             DB::query('INSERT INTO users VALUES (NULL, :username, :password, :email)', array(':username'=>$username, ':password'=>password_hash($password, PASSWORD_BCRYPT), ':email'=>$email));
-                                        echo "Success!";
+                                           echo "Success!";
+                            }
+                            else{
+                                echo 'Email in use!';}
                         } 
                         else { echo 'Invalid email!';}
                     } 

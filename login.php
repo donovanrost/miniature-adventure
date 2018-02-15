@@ -20,6 +20,7 @@ include("/Users/Donovan/Sites/sn/classes/DB.php");
  			DB::query('INSERT INTO login_tokens VALUES (NULL, :token, :user_id)', array(':token' =>sha1($token), ':user_id' =>$user_id));
 
  			setcookie("SNID", $token, time() + 60*60*24*7, '/', NULL, NULL, TRUE);
+ 			setcookie("SNID_", '1', time() + 60*60*24*3, '/', NULL, NULL, TRUE);
 
  		}
  		else{echo 'Incorrect password';}
