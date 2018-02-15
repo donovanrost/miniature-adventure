@@ -19,6 +19,8 @@ include("/Users/Donovan/Sites/sn/classes/DB.php");
  			$user_id = DB::query('SELECT id FROM users WHERE username = :username', array(':username'=>$username))[0]['id'];
  			DB::query('INSERT INTO login_tokens VALUES (NULL, :token, :user_id)', array(':token' =>sha1($token), ':user_id' =>$user_id));
 
+ 			setcookie("SNID", $token, time() + 60*60*24*7, '/', NULL, NULL, TRUE);
+
  		}
  		else{echo 'Incorrect password';}
 
